@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculatrice JS</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+
+    <h1>Calculatrice JS</h1>
+
+    <form id="calculatorForm">
+        <label for="number1">Nombre 1:</label>
+        <input type="text" id="number1" name="number1" required pattern="\d+(\.\d+)?" title="Entrez un nombre">
+
+        <label for="number2">Nombre 2:</label>
+        <input type="text" id="number2" name="number2" required pattern="\d+(\.\d+)?" title="Entrez un nombre autre que 0"><br>
+
+        <button type="button" onclick="calculate()">Calculer</button>
+    </form>
+
+    <h2>Résultats :</h2>
+    <p id="resultSum"></p>
+    <p id="resultProduct"></p>
+    <p id="resultQuotient"></p>
+    <p id="resultDifference"></p>
+
+    <script>
+        function calculate() {
+            // Récupérer les valeurs des champs
+            var num1 = parseFloat(document.getElementById('number1').value);
+            var num2 = parseFloat(document.getElementById('number2').value);
+
+            // Vérifier si les entrées sont des nombres valides
+            if (isNaN(num1) || isNaN(num2)) {
+                alert("Veuillez entrer des nombres valides.");
+                return;
+            }
+
+            // Vérifier si le deuxième nombre n'est pas zéro pour éviter la division par zéro
+            if (num2 === 0) {
+                alert("La division par zéro n'est pas autorisée.");
+                return;
+            }
+
+            // Effectuer les calculs
+            var sum = num1 + num2;
+            var product = num1 * num2;
+            var quotient = num1 / num2.toFixed(2);
+            var difference = num1 - num2;
+
+            // Afficher les résultats
+            document.getElementById('resultSum').innerText = 'Somme : ' + sum;
+            document.getElementById('resultProduct').innerText = 'Produit : ' + product;
+            document.getElementById('resultQuotient').innerText = 'Quotient : ' + quotient;
+            document.getElementById('resultDifference').innerText = 'Différence : ' + difference;
+        }
+    </script>
+
+</body>
+</html>
